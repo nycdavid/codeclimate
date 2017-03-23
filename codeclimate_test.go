@@ -1,11 +1,11 @@
 package codeclimate
 
 import (
+	"net/http"
 	"testing"
 )
 
-func TestXx(t *testing.T) {
-	if true == true {
-		t.Error("Fail")
-	}
+func TestGetScore(t *testing.T) {
+	c := NewClient("mykey", "myapp", &http.Client{})
+	c.GetScore()
 }
