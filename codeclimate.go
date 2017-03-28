@@ -21,16 +21,16 @@ type client struct {
 	httpClient HttpCaller
 }
 
-type Attributes struct {
-	Score           float64 `json:"score"`
-	AnalysisVersion int     `json:"analysis_version"`
-	Branch          string  `json: "branch"`
-}
-
 type Response struct {
 	Repo struct {
 		Attributes Attributes `json:"attributes"`
 	} `json:"data"`
+}
+
+type Attributes struct {
+	Score           float64 `json:"score"`
+	AnalysisVersion int     `json:"analysis_version"`
+	Branch          string  `json: "branch"`
 }
 
 func NewClient(apiKey string, appId string, caller HttpCaller) client {
