@@ -21,14 +21,16 @@ type client struct {
 	httpClient HttpCaller
 }
 
-type Response struct {
-	Data struct {
-		Repo Repo
-	}
+type Attributes struct {
+	Score           float64 `json:"score"`
+	AnalysisVersion int     `json:"analysis_version"`
+	Branch          string  `json: "branch"`
 }
 
-type Repo struct {
-	Score float64
+type Response struct {
+	Repo struct {
+		Attributes Attributes `json:"attributes"`
+	} `json:"data"`
 }
 
 func NewClient(apiKey string, appId string, caller HttpCaller) client {
@@ -57,7 +59,7 @@ func (c client) GetRepo() (Response, error) {
 	}
 	dec := json.NewDecoder(res.Body)
 	e = dec.Decode(&app)
-	fmt.Println(app.Data)
+	fmt.Println(app.Repo.Attributes)
 	if e != nil {
 		fmt.Println(e.Error())
 	}
