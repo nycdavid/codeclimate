@@ -13,15 +13,17 @@ type HttpCaller interface {
 }
 
 type client struct {
-	apiKey     string
-	appId      string
+	ApiKey     string
+	AppId      string
 	httpClient HttpCaller
+	BaseUrl    string
 }
 
-func NewClient(apiKey string, appId string, caller HttpCaller) client {
+func NewClient(apiKey string, appId string, baseUrl string, caller HttpCaller) client {
 	return client{
-		apiKey:     apiKey,
-		appId:      appId,
+		ApiKey:     apiKey,
+		AppId:      appId,
 		httpClient: caller,
+		BaseUrl:    baseUrl,
 	}
 }

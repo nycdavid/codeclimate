@@ -16,7 +16,7 @@ type Repo struct {
 type Attributes struct {
 	Score           float64 `json:"score"`
 	AnalysisVersion int     `json:"analysis_version"`
-	Branch          string  `json: "branch"`
+	Branch          string  `json:"branch"`
 }
 
 func (c client) GetRepo() (Repo, error) {

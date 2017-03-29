@@ -21,7 +21,7 @@ type TestReport struct {
 
 func (c client) GetTestReport() (TestReport, error) {
 	var trs TestReports
-	u, e := url.Parse(codeClimateApiHost)
+	u, e := url.Parse(c.BaseUrl)
 	if e != nil {
 		return TestReport{}, e
 	}
