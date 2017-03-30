@@ -25,12 +25,12 @@ func (c client) GetTestReport() (TestReport, error) {
 	if e != nil {
 		return TestReport{}, e
 	}
-	u.Path = fmt.Sprintf("/v1/repos/%s/test_reports", c.appId)
+	u.Path = fmt.Sprintf("/v1/repos/%s/test_reports", c.AppId)
 	req, e := http.NewRequest(http.MethodGet, u.String(), nil)
 	if e != nil {
 		return TestReport{}, e
 	}
-	req.Header.Add("Authorization", fmt.Sprintf("Token token=%s", c.apiKey))
+	req.Header.Add("Authorization", fmt.Sprintf("Token token=%s", c.ApiKey))
 	httpres, e := c.httpClient.Do(req)
 	if e != nil {
 		return TestReport{}, e

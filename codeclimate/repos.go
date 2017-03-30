@@ -25,12 +25,12 @@ func (c client) GetRepo() (Repo, error) {
 	if e != nil {
 		return Repo{}, e
 	}
-	u.Path = fmt.Sprintf("/v1/repos/%s", c.appId)
+	u.Path = fmt.Sprintf("/v1/repos/%s", c.AppId)
 	req, e := http.NewRequest(http.MethodGet, u.String(), nil)
 	if e != nil {
 		return Repo{}, e
 	}
-	req.Header.Add("Authorization", fmt.Sprintf("Token token=%s", c.apiKey))
+	req.Header.Add("Authorization", fmt.Sprintf("Token token=%s", c.ApiKey))
 	httpres, e := c.httpClient.Do(req)
 	if e != nil {
 		return Repo{}, e
