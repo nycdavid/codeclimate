@@ -10,10 +10,25 @@ import (
 func TestGetTestReport(t *testing.T) {
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.Method != "GET" {
+			// 1. Test for correct method
 			t.Error(fmt.Sprintf("Expected method to be %s but got %s.", "GET", r.Method))
 		}
-		// 2. Test path
-		// 3. Test presence of authorization header
+		if r.RequestURI != "/v1/repos/myappid/test_reports" {
+			// 2. Test for correct path
+			t.Error(fmt.Sprintf(
+				"Expected path to be %s but got %s.",
+				"/v1/repos/myappid/test_reports",
+				r.RequestURI,
+			))
+		}
+		if r.Header.Get("Authorization") != "Token token=myapikey" {
+			// 3. Test presence of authorization header
+			t.Error(fmt.Sprintf(
+				"Expected Authorization header to be %s but got %s.",
+				"Token token=myapikey",
+				r.Header.Get("Authorization"),
+			))
+		}
 		w.Header().Set("Content-Type", "application/json")
 		w.Write([]byte(`
       {
@@ -33,6 +48,8 @@ func TestGetTestReport(t *testing.T) {
 	if e != nil {
 		t.Error(e.Error())
 	}
+
+	// 4. Test that attributes are set correctly
 	if tr.Id != "faketestreportid" {
 		t.Error(fmt.Sprintf("Expected tr.Id to be %s but got %s", "faketestreportid", tr.Id))
 	}
