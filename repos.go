@@ -1,6 +1,7 @@
 package codeclimate
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -20,7 +21,6 @@ type Attributes struct {
 }
 
 func (c client) GetRepo() (Repo, error) {
-	fmt.Println("GETREPO Testline")
 	var repo Repo
 	u, e := url.Parse(c.BaseUrl)
 	if e != nil {
@@ -36,7 +36,10 @@ func (c client) GetRepo() (Repo, error) {
 	if e != nil {
 		return Repo{}, e
 	}
-	dec := json.NewDecoder(httpres.Body)
+	var buf bytes.Buffer
+	buf.ReadFrom(httpres.Body)
+	fmt.Println(buf.String())
+	dec := json.NewDecoder(&buf)
 	e = dec.Decode(&repo)
 	if e != nil {
 		fmt.Println(e.Error())
