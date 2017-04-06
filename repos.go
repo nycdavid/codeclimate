@@ -20,6 +20,7 @@ type Attributes struct {
 }
 
 func (c client) GetRepo() (Repo, error) {
+	fmt.Println("GETREPO Testline")
 	var repo Repo
 	u, e := url.Parse(c.BaseUrl)
 	if e != nil {
