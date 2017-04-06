@@ -55,7 +55,7 @@ func TestGetRepo(t *testing.T) {
 	if repo.Body.Attributes.AnalysisVersion != 4 {
 		t.Error(fmt.Sprintf("Expected AnalysisVersion to be %s but got %s", 4, repo.Body.Attributes.AnalysisVersion))
 	}
-	if repo.Bpdy.Attributes.Branch != "master" {
-		t.Error(fmt.Sprintf("Expected Branch to be %s but got %s", "master", repo.Body.Attributes.CoveredPercent))
+	if repo.Body.Attributes.Branch != "master" {
+		t.Error(fmt.Sprintf("Expected Branch to be %s but got %s", "master", repo.Body.Attributes.Branch))
 	}
 }

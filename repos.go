@@ -21,7 +21,7 @@ type Attributes struct {
 
 func (c client) GetRepo() (Repo, error) {
 	var repo Repo
-	u, e := url.Parse(codeClimateApiHost)
+	u, e := url.Parse(c.BaseUrl)
 	if e != nil {
 		return Repo{}, e
 	}
