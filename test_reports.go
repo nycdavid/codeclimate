@@ -25,7 +25,7 @@ func (c client) GetTestReport() (TestReport, error) {
 	if e != nil {
 		return TestReport{}, e
 	}
-	u.Path = fmt.Sprintf("/v1/repos/%s/test_reports", c.AppId)
+	u.Path = fmt.Sprintf("/repos/%s/test_reports", c.AppId)
 	req, e := http.NewRequest(http.MethodGet, u.String(), nil)
 	if e != nil {
 		return TestReport{}, e

@@ -26,7 +26,7 @@ func TestGetRepo(t *testing.T) {
 			// 2. Test for correct path
 			t.Error(fmt.Sprintf(
 				"Expected path to be %s but got %s.",
-				"/v1/repos/myappid",
+				"/repos/myappid",
 				r.RequestURI,
 			))
 		}
