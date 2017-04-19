@@ -22,11 +22,11 @@ func TestGetRepo(t *testing.T) {
 			// 1. Test for correct method
 			t.Error(fmt.Sprintf("Expected method to be %s but got %s.", "GET", r.Method))
 		}
-		if r.RequestURI != "/v1/repos/myappid" {
+		if r.RequestURI != "/repos/myappid" {
 			// 2. Test for correct path
 			t.Error(fmt.Sprintf(
 				"Expected path to be %s but got %s.",
-				"/v1/repos/myappid/test_reports",
+				"/v1/repos/myappid",
 				r.RequestURI,
 			))
 		}

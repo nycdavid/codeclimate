@@ -5,7 +5,7 @@ import (
 )
 
 const (
-	codeClimateApiHost = "https://api.codeclimate.com"
+	codeClimateApiHost = "https://api.codeclimate.com/v1"
 )
 
 type HttpCaller interface {
